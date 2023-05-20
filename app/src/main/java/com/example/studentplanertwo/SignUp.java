@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -60,8 +61,10 @@ public class SignUp extends AppCompatActivity {
                                         String Id=task.getResult().getUser().getUid();
                                         //-------setting from the users constructor-----//
                                         database.getReference().child("Users").child(Id).setValue(users);
-
-                                        Toast.makeText(SignUp.this, "SignUp Successfull", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SignUp.this, "SignUp Successful", Toast.LENGTH_SHORT).show();
+                                        Intent intent=new Intent(SignUp.this,LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
                                     }else{
                                         Toast.makeText(SignUp.this,task.getException().toString(), Toast.LENGTH_SHORT).show();
                                     }
@@ -70,6 +73,15 @@ public class SignUp extends AppCompatActivity {
                 }else{
                     Toast.makeText(SignUp.this, "Please Enter Credential(s)", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        binding.txtHaveAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SignUp.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
