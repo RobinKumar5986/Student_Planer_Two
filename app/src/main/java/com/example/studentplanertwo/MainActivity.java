@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,9 +26,32 @@ public class MainActivity extends AppCompatActivity {
 
         //----firebase initialization----//
         mAuth=FirebaseAuth.getInstance();
+        
+        binding.img4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,pdfActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.img1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,calanderActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,eventListActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater=getMenuInflater();
@@ -40,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.setting:
-                Toast.makeText(this, "Stting is Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Sting is Clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.logout:
                 mAuth.signOut();
